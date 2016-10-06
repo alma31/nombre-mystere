@@ -3,19 +3,28 @@ $(document).ready(main);
 // Fonction principale
 function main(){
 
+
+    
+	var question = prompt("choisir le nombre de tentatives");
+	console.log(question);
+	var tentatives = $("span").text(question);
+	var min = parseInt(prompt("choisir les valeurs minimale"));
+	var max = parseInt(prompt("choisir les valeurs maximale"));
+    
+    var nb = Math.round(Math.random() * (max-min+1))+min;
+    console.log(nb);
+
+
 $('.rei').click(function(){
       	location.reload();
+
+
 
       
        
     })
 
-
-     var nb = Math.round(Math.random() * 3);
-     console.log(nb)
-
 	
-     var tentatives = 3;
 
 	 function clickValider(){
 
@@ -27,18 +36,18 @@ $('.rei').click(function(){
 			location.reload();
 
 		} else if ( contenu > nb ) {
-			tentatives--;
+			question--;
 			alert(' Perdu, votre nombre est trop grand')
-			$("span").text(tentatives);
+			$("span").text(question);
 
 		} else if ( contenu < nb ) {
-			tentatives--;
+			question--;
 			alert('Perdu, votre nombre est trop petit')
-			$("span").text(tentatives);
+			$("span").text(question);
 
 		} 
 
-		if (tentatives == 0){
+		if (question == 0){
 			alert("partie Perdue") 
 			location.reload();
 		}
