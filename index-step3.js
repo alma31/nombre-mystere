@@ -1,30 +1,27 @@
 $(document).ready(main);
 
 // Fonction principale
+function reset(){
+	return main();
+}
 function main(){
 
 $('.rei').click(function(){
-      	location.reload();
-
-      
-       
+      	main();
+     
     })
-
 
      var nb = Math.round(Math.random() * 3);
      console.log(nb)
 
-	
      var tentatives = 3;
 
 	 function clickValider(){
 
-		
-
 		var contenu = $('input').val();
 		if (contenu == nb) {
 			alert('Gagné');
-			location.reload();
+			main();
 
 		} else if ( contenu > nb ) {
 			tentatives--;
@@ -40,21 +37,15 @@ $('.rei').click(function(){
 
 		if (tentatives == 0){
 			alert("partie Perdue") 
-			location.reload();
+			main();
 		}
-        
-
-
-
-
-
-		 
-	}
-
+        	 
+    }
 
     $('.ici').click(function(){
     	console.log('teste');
     	clickValider();
+
     })
 
 }

@@ -1,39 +1,29 @@
 $(document).ready(main);
 
-// Fonction principale
+
 function main(){
 
+	var nb;
+	var question;
 
-    
-	var question = prompt("choisir le nombre de tentatives");
-	console.log(question);
-	var tentatives = $("span").text(question);
-	var min = parseInt(prompt("choisir les valeurs minimale"));
-	var max = parseInt(prompt("choisir les valeurs maximale"));
-    
-    var nb = Math.round(Math.random() * (max-min+1))+min;
-    console.log(nb);
+	function reset(){
 
+		question = prompt("choisir le nombre de tentatives");
+		var min = parseInt(prompt("choisir les valeurs minimale"));
+		var max = parseInt(prompt("choisir les valeurs maximale"));
+		nb = Math.round(Math.random() * (max-min+1))+min;
+		console.log(nb);
+		$("span").text(question);
 
-$('.rei').click(function(){
-      	location.reload();
-
-
-
-      
-       
-    })
-
+	}
 	
-
-	 function clickValider(){
-
-		
+	function clickValider(){
+	
 
 		var contenu = $('input').val();
 		if (contenu == nb) {
 			alert('Gagné');
-			location.reload();
+			reset();
 
 		} else if ( contenu > nb ) {
 			question--;
@@ -49,21 +39,19 @@ $('.rei').click(function(){
 
 		if (question == 0){
 			alert("partie Perdue") 
-			location.reload();
+			reset();
 		}
-        
 
-
-
-
-
-		 
 	}
 
+	$('.ici').click(function(){
+		clickValider();
+	});
 
-    $('.ici').click(function(){
-    	console.log('teste');
-    	clickValider();
-    })
+	$('.rei').click(function(){
+		reset();
+	});
+
+	reset();
 
 }
