@@ -1,5 +1,14 @@
 $(document).ready(main);
 
+function tentative(message,viesRestantes) {
+	viesRestantes--;
+	console.log(message);
+	$('span').text(viesRestantes);
+
+	return viesRestantes;
+}
+
+
 
 function main(){
 
@@ -17,40 +26,36 @@ function main(){
 
 	}
 	
+	function finJeu(message){
+		alert(message);
+		reset();
+	}
+	
+
+	
 	function clickValider(){
 	
 
-		var contenu = $('input').val();
-		if (contenu == nb) {
-			alert('Gagné');
-			reset();
-
+		var contenu = parseInt($('input').val(), 10);
+		
+		if (contenu === nb) {
+			finJeu('Gagné');
 		} else if ( contenu > nb ) {
-			question--;
-			alert(' Perdu, votre nombre est trop grand')
-			$("span").text(question);
+			question = tentative(' Perdu, votre nombre est trop grand', question);
 
 		} else if ( contenu < nb ) {
-			question--;
-			alert('Perdu, votre nombre est trop petit')
-			$("span").text(question);
-
+			question = tentative('Perdu, votre nombre est trop petit', question);
 		} 
 
 		if (question == 0){
-			alert("partie Perdue") 
-			reset();
+			finJeu("partie Perdue") 
 		}
 
 	}
 
-	$('.ici').click(function(){
-		clickValider();
-	});
+	$('.ici').click(clickValider);
 
-	$('.rei').click(function(){
-		reset();
-	});
+	$('.rei').click(reset);
 
 	reset();
 
